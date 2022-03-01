@@ -29,10 +29,10 @@ for i in range(1, 2):
     setLOCALPREF=BGPPathAttr(type_flags="Transitive", type_code="LOCAL_PREF", attribute=[BGPPALocalPref(local_pref=100)]) 
 
     bgp_update = IP(src=ips, dst=ips, ttl=64)\
-        /TCP(dport=53, sport=179, flags='PA', seq=RandShort(), ack=RandShort())\
+        /TCP(dport=179, sport=179, flags='PA', seq=RandShort(), ack=RandShort())\
         /BGPHeader(marker=340282366920938463463374607431768211455, type="UPDATE")\
         /BGPUpdate(withdrawn_routes_len=0, \
-        path_attr=[setORIGIN, setAS, setNEXTHOP, setMED, setLOCALPREF], nlri=[BGPNLRI_IPv4(prefix="195.47.253.4/32")])
+        path_attr=[setORIGIN, setAS, setNEXTHOP, setMED, setLOCALPREF], nlri=[BGPNLRI_IPv4(prefix="1.3.3.7/32")])
 
 
     del bgp_update[BGPHeader].len
